@@ -1,4 +1,4 @@
-package ru.sema1ary.vedrocraftapi.service;
+package ru.sema1ary.vedrocraftapi;
 
 import org.bukkit.plugin.java.JavaPlugin;
 

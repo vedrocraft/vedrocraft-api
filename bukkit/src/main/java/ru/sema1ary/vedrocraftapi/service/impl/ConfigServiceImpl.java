@@ -1,10 +1,10 @@
-package ru.sema1ary.vedrocraftapi.service.service.impl;
+package ru.sema1ary.vedrocraftapi.service.impl;
 
 import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
 import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.plugin.Plugin;
-import ru.sema1ary.vedrocraftapi.service.service.ConfigService;
+import ru.sema1ary.vedrocraftapi.service.ConfigService;
 
 import java.util.HashMap;
 

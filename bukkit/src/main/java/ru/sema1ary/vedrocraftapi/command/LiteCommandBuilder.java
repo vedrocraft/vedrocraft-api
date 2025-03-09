@@ -1,4 +1,4 @@
-package ru.sema1ary.vedrocraftapi.service.util.command;
+package ru.sema1ary.vedrocraftapi.command;
 
 import dev.rollczi.litecommands.LiteCommands;
 import dev.rollczi.litecommands.LiteCommandsBuilder;
@@ -8,7 +8,7 @@ import dev.rollczi.litecommands.bukkit.LiteBukkitMessages;
 import dev.rollczi.litecommands.bukkit.LiteBukkitSettings;
 import dev.rollczi.litecommands.schematic.SchematicFormat;
 import org.bukkit.command.CommandSender;
-import ru.sema1ary.vedrocraftapi.service.service.ConfigService;
+import ru.sema1ary.vedrocraftapi.service.ConfigService;
 
 @SuppressWarnings("all")
 public class LiteCommandBuilder {

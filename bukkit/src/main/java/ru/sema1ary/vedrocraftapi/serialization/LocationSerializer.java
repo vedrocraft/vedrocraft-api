@@ -1,4 +1,4 @@
-package ru.sema1ary.vedrocraftapi.service.util.serialization;
+package ru.sema1ary.vedrocraftapi.serialization;
 
 import lombok.NonNull;
 import lombok.experimental.UtilityClass;

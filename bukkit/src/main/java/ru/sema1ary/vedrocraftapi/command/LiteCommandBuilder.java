@@ -28,6 +28,7 @@ public class LiteCommandBuilder {
                 .message(LiteBukkitMessages.UUID_INVALID_FORMAT, "&cНеверный формат UUID.")
                 .message(LiteBukkitMessages.LOCATION_INVALID_FORMAT, "&cНеверный формат локации.")
                 .message(LiteBukkitMessages.INVALID_NUMBER, "&cНеверное число.")
+                .message(LiteBukkitMessages.INSTANT_INVALID_FORMAT, "&cНеверный формат даты.")
                 .schematicGenerator(SchematicFormat.angleBrackets());
     }
 

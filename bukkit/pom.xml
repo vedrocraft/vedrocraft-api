@@ -10,11 +10,11 @@
         <version>1.0-SNAPSHOT</version>
     </parent>
 
-    <artifactId>vedrocraftapi</artifactId>
+    <artifactId>bukkit</artifactId>
     <version>1.0</version>
     <packaging>jar</packaging>
 
-    <name>vedrocraftapi</name>
+    <name>bukkit</name>
 
     <properties>
         <java.version>17</java.version>

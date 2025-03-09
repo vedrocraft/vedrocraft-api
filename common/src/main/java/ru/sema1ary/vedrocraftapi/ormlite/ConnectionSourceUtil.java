@@ -20,6 +20,16 @@ public class ConnectionSourceUtil {
     }
 
     @SneakyThrows
+    public JdbcPooledConnectionSource connectSQLWithSSL(String host, String database, String user,
+                                                 String pass, @NonNull Class<?>... modelClasses) {
+        JdbcPooledConnectionSource connectionSource = new JdbcPooledConnectionSource(
+                "jdbc:mariadb://" + host + "/" + database + "?sslMode=trust&autoReconnect=true");
+        setUpTheConnection(connectionSource, user, pass);
+        createModelDaoAndTable(connectionSource, modelClasses);
+        return connectionSource;
+    }
+
+    @SneakyThrows
     public JdbcPooledConnectionSource connectNoSQLDatabase(@NonNull String filePath,
                                                            @NonNull Class<?>... modelClasses) {
         JdbcPooledConnectionSource connectionSource = new JdbcPooledConnectionSource(

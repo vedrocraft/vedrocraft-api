@@ -7,6 +7,7 @@ import dev.rollczi.litecommands.bukkit.LiteBukkitFactory;
 import dev.rollczi.litecommands.bukkit.LiteBukkitMessages;
 import dev.rollczi.litecommands.schematic.SchematicFormat;
 import org.bukkit.command.CommandSender;
+import ru.sema1ary.vedrocraftapi.service.service.ConfigService;
 
 @SuppressWarnings("all")
 public class LiteCommandUtil {
@@ -16,13 +17,15 @@ public class LiteCommandUtil {
         return builder.build();
     }
 
-    public void initBuilder(Object... commands) {
+    public void initBuilder(ConfigService configService, Object... commands) {
+        Object[] newCommands = {new ReloadCommand(configService), commands};
+
         builder = LiteBukkitFactory.builder()
                 .settings(settings -> settings
                         .fallbackPrefix("vedrocraft")
                         .nativePermissions(true)
                 )
-                .commands(commands)
+                .commands(newCommands)
                 .message(LiteBukkitMessages.INVALID_USAGE, "&cНеверное использование!")
                 .message(LiteBukkitMessages.PLAYER_ONLY, "&cЭта команда только для игроков!")
                 .message(LiteBukkitMessages.PLAYER_NOT_FOUND, "&cЭтот игрок не найден.")

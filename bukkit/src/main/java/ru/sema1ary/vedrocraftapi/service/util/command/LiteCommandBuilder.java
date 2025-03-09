@@ -24,6 +24,10 @@ public class LiteCommandBuilder {
                 .message(LiteBukkitMessages.PLAYER_ONLY, "&cЭта команда только для игроков!")
                 .message(LiteBukkitMessages.PLAYER_NOT_FOUND, "&cЭтот игрок не найден.")
                 .message(LiteBukkitMessages.MISSING_PERMISSIONS, "&cУ вас нет прав.")
+                .message(LiteBukkitMessages.WORLD_NOT_EXIST, "&cЭтот мир не существует.")
+                .message(LiteBukkitMessages.UUID_INVALID_FORMAT, "&cНеверный формат UUID.")
+                .message(LiteBukkitMessages.LOCATION_INVALID_FORMAT, "&cНеверный формат локации.")
+                .message(LiteBukkitMessages.INVALID_NUMBER, "&cНеверное число.")
                 .schematicGenerator(SchematicFormat.angleBrackets());
     }
 

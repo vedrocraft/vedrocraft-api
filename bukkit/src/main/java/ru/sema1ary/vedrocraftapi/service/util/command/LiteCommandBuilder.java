@@ -5,27 +5,21 @@ import dev.rollczi.litecommands.LiteCommandsBuilder;
 import dev.rollczi.litecommands.argument.resolver.ArgumentResolverBase;
 import dev.rollczi.litecommands.bukkit.LiteBukkitFactory;
 import dev.rollczi.litecommands.bukkit.LiteBukkitMessages;
+import dev.rollczi.litecommands.bukkit.LiteBukkitSettings;
 import dev.rollczi.litecommands.schematic.SchematicFormat;
 import org.bukkit.command.CommandSender;
 import ru.sema1ary.vedrocraftapi.service.service.ConfigService;
 
 @SuppressWarnings("all")
-public class LiteCommandUtil {
-    private LiteCommandsBuilder<CommandSender, ?, ?> builder;
+public class LiteCommandBuilder {
+    private ConfigService configService;
+    private LiteCommandsBuilder<CommandSender, LiteBukkitSettings, ?> builder = LiteBukkitFactory.builder();
 
-    public LiteCommands<CommandSender> create(Object... commands) {
-        return builder.build();
-    }
+    public LiteCommandBuilder(ConfigService configService) {
+        this.configService = configService;
 
-    public void initBuilder(ConfigService configService, Object... commands) {
-        Object[] newCommands = {new ReloadCommand(configService), commands};
-
-        builder = LiteBukkitFactory.builder()
-                .settings(settings -> settings
-                        .fallbackPrefix("vedrocraft")
-                        .nativePermissions(true)
-                )
-                .commands(newCommands)
+        builder.settings(settings -> settings.fallbackPrefix("vedrocraft")
+                        .nativePermissions(true))
                 .message(LiteBukkitMessages.INVALID_USAGE, "&cНеверное использование!")
                 .message(LiteBukkitMessages.PLAYER_ONLY, "&cЭта команда только для игроков!")
                 .message(LiteBukkitMessages.PLAYER_NOT_FOUND, "&cЭтот игрок не найден.")
@@ -33,7 +27,22 @@ public class LiteCommandUtil {
                 .schematicGenerator(SchematicFormat.angleBrackets());
     }
 
-    public <T> void registerArgument(Class<T> argumentClass, ArgumentResolverBase<CommandSender, T> argumentResolver) {
+    public LiteCommandBuilder commands(Object... commands) {
+        builder.commands(commands);
+        return this;
+    }
+
+    public <T> LiteCommandBuilder argument(Class<T> argumentClass,
+                                           ArgumentResolverBase<CommandSender, T> argumentResolver) {
         builder.argument(argumentClass, argumentResolver);
+        return this;
+    }
+
+    public static LiteCommandBuilder builder(ConfigService configService) {
+        return new LiteCommandBuilder(configService);
+    }
+
+    public LiteCommands<CommandSender> build() {
+        return builder.build();
     }
 }

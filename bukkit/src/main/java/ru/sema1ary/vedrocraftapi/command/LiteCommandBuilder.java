@@ -8,15 +8,12 @@ import dev.rollczi.litecommands.bukkit.LiteBukkitMessages;
 import dev.rollczi.litecommands.bukkit.LiteBukkitSettings;
 import dev.rollczi.litecommands.schematic.SchematicFormat;
 import org.bukkit.command.CommandSender;
-import ru.sema1ary.vedrocraftapi.service.ConfigService;
 
 @SuppressWarnings("all")
 public class LiteCommandBuilder {
-    private ConfigService configService;
-    private LiteCommandsBuilder<CommandSender, LiteBukkitSettings, ?> builder = LiteBukkitFactory.builder();
+    private final LiteCommandsBuilder<CommandSender, LiteBukkitSettings, ?> builder = LiteBukkitFactory.builder();
 
-    public LiteCommandBuilder(ConfigService configService) {
-        this.configService = configService;
+    public LiteCommandBuilder() {
 
         builder.settings(settings -> settings.fallbackPrefix("vedrocraft")
                         .nativePermissions(true))
@@ -43,8 +40,8 @@ public class LiteCommandBuilder {
         return this;
     }
 
-    public static LiteCommandBuilder builder(ConfigService configService) {
-        return new LiteCommandBuilder(configService);
+    public static LiteCommandBuilder builder() {
+        return new LiteCommandBuilder();
     }
 
     public LiteCommands<CommandSender> build() {

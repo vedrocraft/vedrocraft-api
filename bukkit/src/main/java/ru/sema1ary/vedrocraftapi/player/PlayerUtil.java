@@ -5,6 +5,7 @@ import lombok.experimental.UtilityClass;
 import net.kyori.adventure.text.minimessage.MiniMessage;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
+import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
 import java.util.function.Consumer;
@@ -16,6 +17,10 @@ public class PlayerUtil {
 
     public void sendMessage(Player player, @NonNull String message) {
         accept(player, player1 -> player1.sendMessage(miniMessage.deserialize(message)));
+    }
+
+    public void sendMessage(CommandSender player, @NonNull String message) {
+        accept((Player) player, player1 -> player1.sendMessage(miniMessage.deserialize(message)));
     }
 
     public void sendMessage(@NonNull String username, @NonNull String message) {

@@ -1,4 +1,4 @@
-package ru.sema1ary.vedrocraftapi.ormlite;
+package ru.sema1ary.vedrocraftapi.ormlite.dao;
 
 import com.j256.ormlite.dao.Dao;
 import com.j256.ormlite.dao.DaoManager;

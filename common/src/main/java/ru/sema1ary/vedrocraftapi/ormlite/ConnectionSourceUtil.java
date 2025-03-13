@@ -4,6 +4,7 @@ import com.j256.ormlite.jdbc.JdbcPooledConnectionSource;
 import lombok.NonNull;
 import lombok.SneakyThrows;
 import lombok.experimental.UtilityClass;
+import ru.sema1ary.vedrocraftapi.ormlite.dao.DaoCreatorUtil;
 import ru.sema1ary.vedrocraftapi.service.ServiceManager;
 
 @UtilityClass

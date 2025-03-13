@@ -7,9 +7,9 @@ import lombok.SneakyThrows;
 import lombok.experimental.UtilityClass;
 
 @UtilityClass
-class TableCreatorUtil {
+public class TableCreatorUtil {
     @SneakyThrows
-    void create(@NonNull JdbcPooledConnectionSource connectionSource, @NonNull Class<?>... modelClasses) {
+    public void create(@NonNull JdbcPooledConnectionSource connectionSource, @NonNull Class<?>... modelClasses) {
         for(Class<?> modelClass: modelClasses) {
             TableUtils.createTableIfNotExists(connectionSource, modelClass);
         }

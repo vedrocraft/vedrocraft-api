@@ -7,7 +7,7 @@ import org.bukkit.plugin.Plugin;
 
 @UtilityClass
 @SuppressWarnings("unused")
-public class PluginServiceGetter implements ServiceGetter {
+public class PluginServiceGetter {
     public <T> T getServiceFromPlugin(@NonNull String pluginName, @NonNull Class<T> serviceClass) {
        Plugin plugin = Bukkit.getPluginManager().getPlugin(pluginName);
        assert plugin != null;

@@ -33,10 +33,8 @@ public class PlayerUtil {
     }
 
     private void accept(Player player, Consumer<Player> consumer) {
-        if(player == null || !player.isOnline()) {
-            return;
+        if(player != null && player.isOnline()) {
+            consumer.accept(player);
         }
-
-        consumer.accept(player);
     }
 }

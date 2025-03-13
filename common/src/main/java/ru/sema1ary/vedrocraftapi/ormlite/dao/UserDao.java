@@ -18,6 +18,4 @@ public interface UserDao <T, ID> extends Dao<T, ID> {
     Optional<T> findByUsername(@NonNull String username) throws SQLException;
 
     List<T> findAll() throws SQLException;
-
-    T getUser(@NonNull String username);
 }

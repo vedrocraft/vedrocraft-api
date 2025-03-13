@@ -1,8 +1,8 @@
-package ru.sema1ary.vedrocraftapi.interfaces;
+package ru.sema1ary.vedrocraftapi;
 
 import ru.sema1ary.vedrocraftapi.ormlite.DaoFinder;
 import ru.sema1ary.vedrocraftapi.service.ServiceGetter;
 
 @SuppressWarnings("unused")
-public interface BasePlugin extends DaoFinder, ServiceGetter {
+public interface BaseCommons extends DaoFinder, ServiceGetter {
 }

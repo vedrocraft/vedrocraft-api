@@ -27,7 +27,7 @@ public class PlayerUtil {
         accept(player, player1 -> player1.teleportAsync(location));
     }
 
-    public void teleportAsync(String username, @NonNull Location location) {
+    public void teleportAsync(@NonNull String username, @NonNull Location location) {
         Player player = Bukkit.getPlayer(username);
         accept(player, player1 -> player1.teleportAsync(location));
     }

@@ -52,7 +52,7 @@ public class ConnectionSourceUtil {
     }
 
     @SneakyThrows
-    public void closeConnection(boolean shouldDisableServices, JdbcPooledConnectionSource connectionSource) {
+    public void closeConnection(boolean shouldDisableServices) {
         if(shouldDisableServices) ServiceManager.disableServices();
         if(connectionSource != null) connectionSource.close();
     }

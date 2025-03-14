@@ -16,4 +16,6 @@ public interface UserService <T> extends Service {
     Optional<T> findByUsername(@NonNull String username);
 
     List<T> findAll();
+
+    T getUser(@NonNull String username);
 }

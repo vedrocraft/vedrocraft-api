@@ -117,9 +117,9 @@ public class PlayerUtil {
                 PlayerUtil.getMiniMessage().deserialize(title),
                 PlayerUtil.getMiniMessage().deserialize(subtitle),
                 Title.Times.times(
-                        Duration.ofSeconds(fadeIn),
-                        Duration.ofSeconds(stay),
-                        Duration.ofSeconds(fadeOut)
+                        Duration.ofMillis(fadeIn),
+                        Duration.ofMillis(stay),
+                        Duration.ofMillis(fadeOut)
 
                 )
         )));
@@ -130,10 +130,9 @@ public class PlayerUtil {
                 PlayerUtil.getMiniMessage().deserialize(title),
                 PlayerUtil.getMiniMessage().deserialize(subtitle),
                 Title.Times.times(
-                        Duration.ofSeconds(Long.MIN_VALUE),
-                        Duration.ofSeconds(Long.MAX_VALUE),
-                        Duration.ofSeconds(Long.MIN_VALUE)
-
+                        Duration.ofMillis(10),
+                        Duration.ofDays(120),
+                        Duration.ofMillis(10)
                 )
         )));
     }
@@ -143,10 +142,9 @@ public class PlayerUtil {
                 PlayerUtil.getMiniMessage().deserialize(title),
                 PlayerUtil.getMiniMessage().deserialize(subtitle),
                 Title.Times.times(
-                        Duration.ofSeconds(fadeIn),
-                        Duration.ofSeconds(Long.MAX_VALUE),
-                        Duration.ofSeconds(fadeOut)
-
+                        Duration.ofMillis(fadeIn),
+                        Duration.ofDays(120),
+                        Duration.ofMillis(fadeOut)
                 )
         )));
     }

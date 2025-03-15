@@ -7,6 +7,7 @@ import org.bukkit.entity.Player;
 import ru.sema1ary.vedrocraftapi.player.PlayerUtil;
 import ru.sema1ary.vedrocraftapi.serialization.LocationSerializer;
 
+@SuppressWarnings("unused")
 public interface TeleportInterface {
     default void teleport(Player player, @NonNull Location location) {
         PlayerUtil.accept(player, player1 -> player1.teleport(location));

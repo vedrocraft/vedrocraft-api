@@ -15,6 +15,7 @@ public class ConfigServiceImpl implements ConfigService {
 
     @Override
     public void enable() {
+        plugin.saveDefaultConfig();
         reload();
     }
 

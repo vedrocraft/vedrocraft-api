@@ -130,9 +130,9 @@ public class PlayerUtil {
                 PlayerUtil.getMiniMessage().deserialize(title),
                 PlayerUtil.getMiniMessage().deserialize(subtitle),
                 Title.Times.times(
-                        Duration.ofMillis(10),
+                        Duration.ofMillis(60),
                         Duration.ofDays(120),
-                        Duration.ofMillis(10)
+                        Duration.ofMillis(60)
                 )
         )));
     }
@@ -153,7 +153,7 @@ public class PlayerUtil {
         PlayerUtil.accept(player, Player::resetTitle);
     }
 
-    public void accept(Player player, Consumer<Player> consumer) {
+    private void accept(Player player, Consumer<Player> consumer) {
         if(player != null && player.isOnline()) {
             consumer.accept(player);
         }

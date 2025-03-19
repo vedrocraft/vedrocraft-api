@@ -7,6 +7,7 @@ import dev.rollczi.litecommands.bukkit.LiteBukkitFactory;
 import dev.rollczi.litecommands.bukkit.LiteBukkitMessages;
 import dev.rollczi.litecommands.bukkit.LiteBukkitSettings;
 import dev.rollczi.litecommands.schematic.SchematicFormat;
+import lombok.NonNull;
 import org.bukkit.command.CommandSender;
 
 @SuppressWarnings("all")
@@ -29,13 +30,13 @@ public class LiteCommandBuilder {
                 .schematicGenerator(SchematicFormat.angleBrackets());
     }
 
-    public LiteCommandBuilder commands(Object... commands) {
+    public LiteCommandBuilder commands(@NonNull Object... commands) {
         builder.commands(commands);
         return this;
     }
 
-    public <T> LiteCommandBuilder argument(Class<T> argumentClass,
-                                           ArgumentResolverBase<CommandSender, T> argumentResolver) {
+    public <T> LiteCommandBuilder argument(@NonNull Class<T> argumentClass,
+                                           @NonNull ArgumentResolverBase<CommandSender, T> argumentResolver) {
         builder.argument(argumentClass, argumentResolver);
         return this;
     }

@@ -23,33 +23,33 @@ public class PlayerUtil {
     private final MiniMessage miniMessage = MiniMessage.miniMessage();
 
     public void sendMessage(Player player, @NonNull Component message) {
-        PlayerUtil.accept(player, player1 -> player1.sendMessage(message));
+        PlayerUtil.accept(player, (Consumer<Player>) player1 -> player1.sendMessage(message));
     }
 
     public void sendMessage(CommandSender player, @NonNull Component message) {
-        PlayerUtil.accept((Player) player, player1 -> player1.sendMessage(message));
+        PlayerUtil.accept(player, player1 -> player1.sendMessage(message));
     }
 
     public void sendMessage(@NonNull String username, @NonNull Component message) {
         Player player = Bukkit.getPlayer(username);
-        PlayerUtil.accept(player, player1 -> player1.sendMessage(message));
+        PlayerUtil.accept(player, (Consumer<Player>) player1 -> player1.sendMessage(message));
     }
 
     public void sendMessage(Player player, @NonNull String message) {
-        PlayerUtil.accept(player, player1 -> player1.sendMessage(
+        PlayerUtil.accept(player, (Consumer<Player>) player1 -> player1.sendMessage(
                 PlayerUtil.getMiniMessage().deserialize(message)
         ));
     }
 
     public void sendMessage(CommandSender player, @NonNull String message) {
-        PlayerUtil.accept((Player) player, player1 -> player1.sendMessage(
+        PlayerUtil.accept(player, player1 -> player1.sendMessage(
                 PlayerUtil.getMiniMessage().deserialize(message)
         ));
     }
 
     public void sendMessage(@NonNull String username, @NonNull String message) {
         Player player = Bukkit.getPlayer(username);
-        PlayerUtil.accept(player, player1 -> player1.sendMessage(
+        PlayerUtil.accept(player, (Consumer<Player>) player1 -> player1.sendMessage(
                 PlayerUtil.getMiniMessage().deserialize(message)
         ));
     }
@@ -87,25 +87,25 @@ public class PlayerUtil {
     }
 
     public void teleportAsync(Player player, @NonNull Location location) {
-        PlayerUtil.accept(player, player1 -> player1.teleportAsync(location));
+        PlayerUtil.accept(player, (Consumer<Player>) player1 -> player1.teleportAsync(location));
     }
 
     public void teleportAsync(@NonNull String username, @NonNull Location location) {
         Player player = Bukkit.getPlayer(username);
-        PlayerUtil.accept(player, player1 -> player1.teleportAsync(location));
+        PlayerUtil.accept(player, (Consumer<Player>) player1 -> player1.teleportAsync(location));
     }
 
     public void teleportAsync(Player player, @NonNull String location) {
-        PlayerUtil.accept(player, player1 -> player1.teleportAsync(LocationSerializer.deserialize(location)));
+        PlayerUtil.accept(player, (Consumer<Player>) player1 -> player1.teleportAsync(LocationSerializer.deserialize(location)));
     }
 
     public void teleportAsync(@NonNull String username, @NonNull String location) {
         Player player = Bukkit.getPlayer(username);
-        PlayerUtil.accept(player, player1 -> player1.teleportAsync(LocationSerializer.deserialize(location)));
+        PlayerUtil.accept(player, (Consumer<Player>) player1 -> player1.teleportAsync(LocationSerializer.deserialize(location)));
     }
 
     public void showTitle(Player player, String title, String subtitle) {
-        PlayerUtil.accept(player, player1 -> player1.showTitle(Title.title(
+        PlayerUtil.accept(player, (Consumer<Player>) player1 -> player1.showTitle(Title.title(
                         PlayerUtil.getMiniMessage().deserialize(title),
                         PlayerUtil.getMiniMessage().deserialize(subtitle)
                 )
@@ -113,20 +113,18 @@ public class PlayerUtil {
     }
 
     public void showTitle(Player player, String title, String subtitle, long fadeIn, long stay, long fadeOut) {
-        PlayerUtil.accept(player, player1 -> player1.showTitle(Title.title(
+        PlayerUtil.accept(player, (Consumer<Player>) player1 -> player1.showTitle(Title.title(
                 PlayerUtil.getMiniMessage().deserialize(title),
                 PlayerUtil.getMiniMessage().deserialize(subtitle),
                 Title.Times.times(
                         Duration.ofMillis(fadeIn),
-                        Duration.ofMillis(stay),
-                        Duration.ofMillis(fadeOut)
-
+                        Duration.ofMillis(stay), Duration.ofMillis(fadeOut)
                 )
         )));
     }
 
     public void showInfinityTitle(Player player, String title, String subtitle) {
-        PlayerUtil.accept(player, player1 -> player1.showTitle(Title.title(
+        PlayerUtil.accept(player, (Consumer<Player>) player1 -> player1.showTitle(Title.title(
                 PlayerUtil.getMiniMessage().deserialize(title),
                 PlayerUtil.getMiniMessage().deserialize(subtitle),
                 Title.Times.times(
@@ -138,7 +136,7 @@ public class PlayerUtil {
     }
 
     public void showInfinityTitle(Player player, String title, String subtitle, long fadeIn, long fadeOut) {
-        PlayerUtil.accept(player, player1 -> player1.showTitle(Title.title(
+        PlayerUtil.accept(player, (Consumer<Player>) player1 -> player1.showTitle(Title.title(
                 PlayerUtil.getMiniMessage().deserialize(title),
                 PlayerUtil.getMiniMessage().deserialize(subtitle),
                 Title.Times.times(
@@ -156,6 +154,12 @@ public class PlayerUtil {
     private void accept(Player player, Consumer<Player> consumer) {
         if(player != null && player.isOnline()) {
             consumer.accept(player);
+        }
+    }
+
+    private void accept(CommandSender sender, Consumer<CommandSender> consumer) {
+        if(sender != null) {
+            consumer.accept(sender);
         }
     }
 }

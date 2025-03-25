@@ -5,22 +5,22 @@
 Maven
 ```xml
 <repository>
-  <id>reposilite-repository-releases</id>
-  <name>Reposilite Repository</name>
+  <id>vedrocraft-repository-releases</id>
+  <name>Vedrocraft Maven Repository</name>
   <url>https://maven.vedrocraft.space/releases</url>
 </repository>
 ```
 Gradle Kotlin
 ```kts
 maven {
-    name = "reposiliteRepositoryReleases"
+    name = "vedrocraftRepositoryReleases"
     url = uri("https://maven.vedrocraft.space/releases")
 }
 ```
 Gradle Groovy
 ```groovy
 maven {
-    name "reposiliteRepositoryReleases"
+    name "vedrocraftRepositoryReleases"
     url "https://maven.vedrocraft.space/releases"
 }
 ```

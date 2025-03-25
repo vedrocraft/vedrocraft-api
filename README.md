@@ -44,4 +44,4 @@ implementation "ru.sema1ary:{модуль}:{версия}"
 ```
 
 Все модули: bukkit, common, velocity     
-За версией можно следить на maven.vedrocraft.space
+За версией можно следить на [maven.vedrocraft.space](https://maven.vedrocraft.space/)

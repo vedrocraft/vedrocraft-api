@@ -20,6 +20,13 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
 
+    <distributionManagement>
+        <repository>
+            <id>maven-vedrocraft-space</id>
+            <url>https://maven.vedrocraft.space/releases</url>
+        </repository>
+    </distributionManagement>
+
     <dependencies>
         <dependency>
             <groupId>org.projectlombok</groupId>
@@ -28,5 +35,4 @@
             <scope>provided</scope>
         </dependency>
     </dependencies>
-
 </project>

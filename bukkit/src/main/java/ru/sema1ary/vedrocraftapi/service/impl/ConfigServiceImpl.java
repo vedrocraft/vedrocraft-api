@@ -16,6 +16,13 @@ public class ConfigServiceImpl implements ConfigService {
     @Override
     public void enable() {
         plugin.saveDefaultConfig();
+
+        System.out.println("1");
+        if(!isSettingExists("reload-message")) {
+            System.out.println("2");
+            set("reload-message", "<green>Плагин перезапущен.");
+        }
+
         reload();
     }
 
@@ -38,5 +45,16 @@ public class ConfigServiceImpl implements ConfigService {
     @SuppressWarnings("unchecked")
     public <T> @NonNull T get(@NonNull String index) {
         return (T) configurationMap.get(index);
+    }
+
+    @Override
+    public <T> void set(@NonNull String index, T value) {
+        plugin.getConfig().set("configuration." + index, value);
+        plugin.saveConfig();
+    }
+
+    @Override
+    public boolean isSettingExists(@NonNull String index) {
+        return configurationMap.containsKey(index);
     }
 }

@@ -16,6 +16,13 @@ public class DatabaseUtil {
     @SneakyThrows
     public void initConnectionSource(@NonNull Plugin plugin, @NonNull ConfigService configService,
                                      @NonNull Class<?>... modelClasses) {
+        if(!configService.isSettingExists("sql-use")) {
+            configService.set("sql-use", false);
+            configService.set("sql-host", "localhost:3306");
+            configService.set("sql-database", "database");
+            configService.set("sql-user", "user");
+            configService.set("sql-password", "password");
+        }
 
         if(configService.get("sql-use")) {
             ConnectionSourceUtil.connectSQL(

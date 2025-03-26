@@ -7,11 +7,10 @@
     <parent>
         <groupId>ru.sema1ary</groupId>
         <artifactId>vedrocraft-api</artifactId>
-        <version>1.0</version>
+        <version>1.1</version>
     </parent>
 
     <artifactId>velocity</artifactId>
-    <version>1.0</version>
     <packaging>jar</packaging>
 
     <name>velocity</name>

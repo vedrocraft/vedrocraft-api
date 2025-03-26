@@ -25,7 +25,7 @@ maven {
 }
 ```
 
-### Dependency
+#### Dependency:
 Maven
 ```xml
 <dependency>

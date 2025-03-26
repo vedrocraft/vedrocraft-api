@@ -190,7 +190,7 @@
         <dependency>
             <groupId>ru.sema1ary</groupId>
             <artifactId>common</artifactId>
-            <version>1.0</version>
+            <version>${project.version}</version>
         </dependency>
     </dependencies>
 </project>

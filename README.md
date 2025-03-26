@@ -1,6 +1,5 @@
 # Vedrocraft API
 ## Использование в вашем проекте:
-### Maven:
 #### Repository:
 Maven
 ```xml

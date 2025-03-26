@@ -7,11 +7,11 @@
     <parent>
         <groupId>ru.sema1ary</groupId>
         <artifactId>vedrocraft-api</artifactId>
-        <version>1.0</version>
+        <version>1.1</version>
     </parent>
 
     <artifactId>velocity</artifactId>
-    <version>1.0</version>
+    <version>1.1</version>
     <packaging>jar</packaging>
 
     <name>velocity</name>
@@ -187,6 +187,11 @@
             <groupId>dev.rollczi</groupId>
             <artifactId>litecommands-velocity</artifactId>
             <version>3.4.3</version>
+        </dependency>
+        <dependency>
+            <groupId>ru.sema1ary</groupId>
+            <artifactId>common</artifactId>
+            <version>1.1</version>
         </dependency>
     </dependencies>
 </project>

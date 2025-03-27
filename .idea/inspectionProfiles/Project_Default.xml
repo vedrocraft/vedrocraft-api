@@ -6,16 +6,19 @@
       <option name="ignoredModules">
         <list>
           <option value="vedrocraftapi" />
+          <option value="bukkit" />
         </list>
       </option>
       <option name="ignoredPackages">
         <list>
+          <option value="com.google.guava:guava:31.1-jre" />
           <option value="com.google.guava:guava:31.1-jre" />
         </list>
       </option>
       <option name="ignoredReasons">
         <list>
           <option value="." />
+          <option value="Not exploitable" />
         </list>
       </option>
     </inspection_tool>

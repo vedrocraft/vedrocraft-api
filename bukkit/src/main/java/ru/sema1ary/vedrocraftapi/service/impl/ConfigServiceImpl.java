@@ -44,7 +44,13 @@ public class ConfigServiceImpl implements ConfigService {
     @Override
     @SuppressWarnings("unchecked")
     public <T> @NonNull T get(@NonNull String index) {
-        return (T) configurationMap.get(index);
+        T object = (T) configurationMap.get(index);
+
+        if(object == null) {
+            return (T) ("[ConfigService] " + index + " dont exists!");
+        }
+
+        return object;
     }
 
     @Override

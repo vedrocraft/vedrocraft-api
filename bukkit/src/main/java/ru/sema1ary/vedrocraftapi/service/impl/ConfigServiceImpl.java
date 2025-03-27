@@ -49,6 +49,12 @@ public class ConfigServiceImpl implements ConfigService {
 
     @Override
     public <T> void set(@NonNull String index, T value) {
+        if(configurationMap.containsKey(index)) {
+            configurationMap.replace(index, value);
+        } else {
+            configurationMap.put(index, value);
+        }
+
         plugin.getConfig().set("configuration." + index, value);
         plugin.saveConfig();
     }

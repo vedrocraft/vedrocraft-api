@@ -2,12 +2,14 @@ package ru.sema1ary.vedrocraftapi.service.impl;
 
 import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.plugin.Plugin;
 import ru.sema1ary.vedrocraftapi.service.ConfigService;
 
 import java.util.HashMap;
 
+@Slf4j
 @RequiredArgsConstructor
 public class ConfigServiceImpl implements ConfigService {
     private final Plugin plugin;
@@ -17,9 +19,7 @@ public class ConfigServiceImpl implements ConfigService {
     public void enable() {
         plugin.saveDefaultConfig();
 
-        System.out.println("1");
         if(!isSettingExists("reload-message")) {
-            System.out.println("2");
             set("reload-message", "<green>Плагин перезапущен.");
         }
 
@@ -33,7 +33,7 @@ public class ConfigServiceImpl implements ConfigService {
         ConfigurationSection section = plugin.getConfig().getConfigurationSection("configuration");
 
         if(section == null) {
-            System.out.println("The config does not contain a configuration section.");
+            log.error("The config does not contain a configuration section.");
             return;
         }
 
@@ -42,12 +42,12 @@ public class ConfigServiceImpl implements ConfigService {
     }
 
     @Override
-    @SuppressWarnings("unchecked")
+    @SuppressWarnings("all")
     public <T> @NonNull T get(@NonNull String index) {
         T object = (T) configurationMap.get(index);
 
         if(object == null) {
-            return (T) ("[ConfigService] " + index + " dont exists!");
+            log.error("[ConfigService] {} dont exists!", index);
         }
 
         return object;

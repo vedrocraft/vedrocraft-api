@@ -1,6 +1,8 @@
 package ru.sema1ary.vedrocraftapi.gui;
 
+import lombok.RequiredArgsConstructor;
 import net.kyori.adventure.text.Component;
+import net.kyori.adventure.text.minimessage.MiniMessage;
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.Sound;
@@ -12,9 +14,10 @@ import ru.sema1ary.vedrocraftapi.item.ItemBuilder;
 import java.util.ArrayList;
 import java.util.List;
 
+@RequiredArgsConstructor
 @SuppressWarnings("unused")
 public abstract class PagedGui {
-    private final Component title;
+    private final String title;
 
     private final int size;
 
@@ -22,15 +25,11 @@ public abstract class PagedGui {
 
     private int currentSlot = 0;
 
-    private final List<Inventory> inventories;
+    private final List<Inventory> inventories = new ArrayList<>();
+
+    private final MiniMessage miniMessage = MiniMessage.miniMessage();
 
     public abstract void createInventory();
-
-    public PagedGui(Component title, int size) {
-        this.inventories = new ArrayList<>();
-        this.title = title;
-        this.size = size;
-    }
 
     @SuppressWarnings("unused")
     public void open(Player player) {
@@ -79,7 +78,7 @@ public abstract class PagedGui {
 
     private void createPage(ItemStack itemStack) {
         Inventory page = Bukkit.createInventory(null, size,
-                title.append(Component.text(" - страница: " + (inventories.size() + 1))));
+                miniMessage.deserialize(title).append(Component.text(" - страница: " + (inventories.size() + 1))));
         currentSlot = 0;
         page.setItem(currentSlot, itemStack);
         currentSlot++;

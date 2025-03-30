@@ -3,6 +3,7 @@ package ru.sema1ary.vedrocraftapi.item;
 import com.destroystokyo.paper.profile.PlayerProfile;
 import com.destroystokyo.paper.profile.ProfileProperty;
 import lombok.NonNull;
+import lombok.extern.slf4j.Slf4j;
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.minimessage.MiniMessage;
 import org.bukkit.Bukkit;
@@ -11,31 +12,29 @@ import org.bukkit.NamespacedKey;
 import org.bukkit.event.entity.EntityPickupItemEvent;
 import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.event.player.PlayerDropItemEvent;
+import org.bukkit.event.player.PlayerInteractEntityEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
+import org.bukkit.event.player.PlayerItemHeldEvent;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.inventory.meta.SkullMeta;
 import org.bukkit.persistence.PersistentDataType;
-import ru.sema1ary.vedrocraftapi.item.listener.DropListener;
-import ru.sema1ary.vedrocraftapi.item.listener.InteractListener;
-import ru.sema1ary.vedrocraftapi.item.listener.InventoryClickListener;
-import ru.sema1ary.vedrocraftapi.item.listener.PickupListener;
+import ru.sema1ary.vedrocraftapi.item.action.ItemActions;
+import ru.sema1ary.vedrocraftapi.item.util.ItemActionUtil;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 import java.util.function.Consumer;
 
+@Slf4j
 @SuppressWarnings("unused")
 public class ItemBuilder {
     private final ItemMeta itemMeta;
     private final ItemStack itemStack;
     private final MiniMessage miniMessage = MiniMessage.miniMessage();
 
-    private Consumer<EntityPickupItemEvent> pickupItemEvent;
-    private Consumer<PlayerDropItemEvent> dropItemEvent;
-    private Consumer<InventoryClickEvent> inventoryClickEvent;
-    private Consumer<PlayerInteractEvent> interactEvent;
+    private final ItemActions actions = new ItemActions();
 
     public ItemBuilder displayName(@NonNull String name) {
         itemMeta.displayName(miniMessage.deserialize(name));
@@ -61,23 +60,33 @@ public class ItemBuilder {
         return this;
     }
 
-    public ItemBuilder pickAction(@NonNull Consumer<EntityPickupItemEvent> action) {
-        pickupItemEvent = action;
+    public ItemBuilder interactAction(@NonNull Consumer<PlayerInteractEvent> action) {
+        actions.setInteractAction(action);
+        return this;
+    }
+
+    public ItemBuilder entityInteractAction(@NonNull Consumer<PlayerInteractEntityEvent> action) {
+        actions.setEntityInteractAction(action);
+        return this;
+    }
+
+    public ItemBuilder pickupAction(@NonNull Consumer<EntityPickupItemEvent> action) {
+        actions.setPickupAction(action);
         return this;
     }
 
     public ItemBuilder dropAction(@NonNull Consumer<PlayerDropItemEvent> action) {
-        dropItemEvent = action;
+        actions.setDropAction(action);
         return this;
     }
 
     public ItemBuilder inventoryClickAction(@NonNull Consumer<InventoryClickEvent> action) {
-        inventoryClickEvent = action;
+        actions.setInventoryClickAction(action);
         return this;
     }
 
-    public ItemBuilder interactAction(@NonNull Consumer<PlayerInteractEvent> action) {
-        interactEvent = action;
+    public ItemBuilder heldAction(@NonNull Consumer<PlayerItemHeldEvent> action) {
+        actions.setHeldAction(action);
         return this;
     }
 
@@ -96,22 +105,8 @@ public class ItemBuilder {
                 PersistentDataType.STRING, uuid);
 
         itemStack.setItemMeta(itemMeta);
-        registerActions(uuid);
+        ItemActionUtil.registerAction(uuid, actions);
+        log.debug(String.valueOf(actions));
         return itemStack;
-    }
-
-    private void registerActions(@NonNull String uuid) {
-        if(pickupItemEvent != null) {
-            PickupListener.registerAction(uuid, pickupItemEvent);
-        }
-        if(dropItemEvent != null) {
-            DropListener.registerAction(uuid, dropItemEvent);
-        }
-        if(inventoryClickEvent != null) {
-            InventoryClickListener.registerAction(uuid, inventoryClickEvent);
-        }
-        if(interactEvent != null) {
-            InteractListener.registerAction(uuid, interactEvent);
-        }
     }
 }

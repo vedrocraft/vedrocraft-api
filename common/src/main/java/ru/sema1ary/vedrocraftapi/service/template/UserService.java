@@ -1,6 +1,7 @@
-package ru.sema1ary.vedrocraftapi.service;
+package ru.sema1ary.vedrocraftapi.service.template;
 
 import lombok.NonNull;
+import ru.sema1ary.vedrocraftapi.service.Service;
 
 import java.util.List;
 import java.util.Optional;

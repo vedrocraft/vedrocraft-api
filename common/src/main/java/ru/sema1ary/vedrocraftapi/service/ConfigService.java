@@ -10,6 +10,4 @@ public interface ConfigService extends Service {
     <T> T get(@NonNull String index);
 
     <T> void set(@NonNull String index, T value);
-
-    boolean isSettingExists(@NonNull String index);
 }

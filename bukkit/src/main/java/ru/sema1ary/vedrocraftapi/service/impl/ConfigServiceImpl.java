@@ -11,6 +11,7 @@ import java.util.HashMap;
 
 @Slf4j
 @RequiredArgsConstructor
+@SuppressWarnings("unused")
 public class ConfigServiceImpl implements ConfigService {
     private final Plugin plugin;
     private final HashMap<String, Object> configurationMap = new HashMap<>();
@@ -18,12 +19,19 @@ public class ConfigServiceImpl implements ConfigService {
     @Override
     public void enable() {
         plugin.saveDefaultConfig();
+        reload();
 
-        if(!isSettingExists("reload-message")) {
+        if(!configurationMap.containsKey("reload-message")) {
             set("reload-message", "<green>Плагин перезапущен.");
         }
 
-        reload();
+        if(!configurationMap.containsKey("sql-use")) {
+            set("sql-use", false);
+            set("sql-host", "localhost:3306");
+            set("sql-database", "database");
+            set("sql-user", "user");
+            set("sql-password", "password");
+        }
     }
 
     @Override
@@ -73,10 +81,5 @@ public class ConfigServiceImpl implements ConfigService {
         } else {
             configurationMap.put(index, value);
         }
-    }
-
-    @Override
-    public boolean isSettingExists(@NonNull String index) {
-        return configurationMap.containsKey(index);
     }
 }

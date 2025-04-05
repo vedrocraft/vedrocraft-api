@@ -3,7 +3,6 @@ package ru.sema1ary.vedrocraftapi.ormlite;
 import lombok.NonNull;
 import lombok.SneakyThrows;
 import lombok.experimental.UtilityClass;
-import org.bukkit.plugin.Plugin;
 import ru.sema1ary.vedrocraftapi.service.ConfigService;
 
 import java.nio.file.Files;
@@ -14,7 +13,7 @@ import java.nio.file.Paths;
 @SuppressWarnings("unused")
 public class DatabaseUtil {
     @SneakyThrows
-    public void initConnectionSource(@NonNull Plugin plugin, @NonNull ConfigService configService,
+    public void initConnectionSource(@NonNull String pluginName, @NonNull ConfigService configService,
                                      @NonNull Class<?>... modelClasses) {
         if(configService.get("sql-use")) {
             ConnectionSourceUtil.connectSQL(
@@ -26,14 +25,14 @@ public class DatabaseUtil {
             return;
         }
 
-        initConnectionSource(plugin, modelClasses);
+        initConnectionSource(pluginName, modelClasses);
     }
 
     @SneakyThrows
-    public void initConnectionSource(@NonNull Plugin plugin,
+    public void initConnectionSource(@NonNull String pluginName,
                                      @NonNull Class<?>... modelClasses) {
 
-        Path databaseFilePath = Paths.get(plugin.getDataFolder() + "/database.sqlite");
+        Path databaseFilePath = Paths.get("plugins/" + pluginName + "/database.sqlite");
 
         if(!Files.exists(databaseFilePath) && !databaseFilePath.toFile().createNewFile()) {
             return;
